@@ -8,6 +8,8 @@ git_repo_id=$2
 release_note=$3
 git_host=$4
 
+echo git_user_id
+
 if [ "$git_host" = "" ]; then
     git_host="github.com"
     echo "[INFO] No command line input provided. Set \$git_host to $git_host"
