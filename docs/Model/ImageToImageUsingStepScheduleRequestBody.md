@@ -1,0 +1,21 @@
+# # ImageToImageUsingStepScheduleRequestBody
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**text_prompts** | [**\OpenAPI\Client\Model\TextPrompt[]**](TextPrompt.md) | An array of text prompts to use for generation.  Due to how arrays are represented in &#x60;multipart/form-data&#x60; requests, prompts must adhear to the format &#x60;text_prompts[index][text|weight]&#x60;, where &#x60;index&#x60; is some integer used to tie the text and weight together.  While &#x60;index&#x60; does not have to be sequential, duplicate entries  will override previous entries, so it is recommended to use sequential indices.  Given a text prompt with the text &#x60;A lighthouse on a cliff&#x60; and a weight of &#x60;0.5&#x60;, it would be represented as: &#x60;&#x60;&#x60; text_prompts[0][text]: \&quot;A lighthouse on a cliff\&quot; text_prompts[0][weight]: 0.5 &#x60;&#x60;&#x60;  To add another prompt to that request simply provide the values under a new &#x60;index&#x60;:  &#x60;&#x60;&#x60; text_prompts[0][text]: \&quot;A lighthouse on a cliff\&quot; text_prompts[0][weight]: 0.5 text_prompts[1][text]: \&quot;land, ground, dirt, grass\&quot; text_prompts[1][weight]: -0.9 &#x60;&#x60;&#x60; |
+**init_image** | **\SplFileObject** | Image used to initialize the diffusion process, in lieu of random noise. |
+**init_image_mode** | [**\OpenAPI\Client\Model\InitImageMode**](InitImageMode.md) |  | [optional]
+**step_schedule_start** | **float** | Skips a proportion of the start of the diffusion steps, allowing the init_image to influence the final generated image.  Lower values will result in more influence from the init_image, while higher values will result in more influence from the diffusion steps.  (e.g. a value of &#x60;0&#x60; would simply return you the init_image, where a value of &#x60;1&#x60; would return you a completely different image.) | [optional] [default to 0.65]
+**step_schedule_end** | **float** | Skips a proportion of the end of the diffusion steps, allowing the init_image to influence the final generated image.  Lower values will result in more influence from the init_image, while higher values will result in more influence from the diffusion steps. | [optional]
+**cfg_scale** | **float** | How strictly the diffusion process adheres to the prompt text (higher values keep your image closer to your prompt) | [optional] [default to 7]
+**clip_guidance_preset** | [**\OpenAPI\Client\Model\ClipGuidancePreset**](ClipGuidancePreset.md) |  | [optional]
+**height** | **int** | Height of the image in pixels.  Must be in increments of 64 and pass the following validation: - For 768 engines: &lt;span style&#x3D;&#39;display: flex; justify-content: flex-start; gap:8px&#39;&gt;589,824 &lt;span&gt;≤&lt;/span&gt; &#x60;height * width&#x60; &lt;span&gt;≤&lt;/span&gt; 1,048,576&lt;/span&gt; - All other engines: &lt;span style&#x3D;&#39;display: flex; justify-content: flex-start; gap:8px&#39;&gt;262,144 &lt;span&gt;≤&lt;/span&gt; &#x60;height * width&#x60; &lt;span&gt;≤&lt;/span&gt; 1,048,576&lt;/span&gt; | [optional] [default to 512]
+**width** | **int** | Width of the image in pixels.  Must be in increments of 64 and pass the following validation: - For 768 engines: &lt;span style&#x3D;&#39;display: flex; justify-content: flex-start; gap:8px&#39;&gt;589,824 &lt;span&gt;≤&lt;/span&gt; &#x60;height * width&#x60; &lt;span&gt;≤&lt;/span&gt; 1,048,576&lt;/span&gt; - All other engines: &lt;span style&#x3D;&#39;display: flex; justify-content: flex-start; gap:8px&#39;&gt;262,144 &lt;span&gt;≤&lt;/span&gt; &#x60;height * width&#x60; &lt;span&gt;≤&lt;/span&gt; 1,048,576&lt;/span&gt; | [optional] [default to 512]
+**sampler** | [**\OpenAPI\Client\Model\Sampler**](Sampler.md) |  | [optional]
+**samples** | **int** | Number of images to generate | [optional] [default to 1]
+**seed** | **int** | Random noise seed (omit this option or use &#x60;0&#x60; for a random seed) | [optional] [default to 0]
+**steps** | **int** | Number of diffusion steps to run | [optional] [default to 50]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
